@@ -6,10 +6,10 @@ from datetime import datetime, timedelta
 
 def get_publish_time(info):
     saat_ini = datetime.now()
-    if 'menit' in info:
-        return (saat_ini - timedelta(minutes=int(info.split('-')[1].strip().split()[0]))).strftime("%A, %d %B %Y, %H:%M WIB")
-    elif 'jam' in info:
+    if 'jam' in info:
         return (saat_ini - timedelta(hours=int(info.split('-')[1].strip().split()[0]))).strftime("%A, %d %B %Y, %H:%M WIB")
+    elif 'menit' in info:
+        return (saat_ini - timedelta(minutes=int(info.split('-')[1].strip().split()[0]))).strftime("%A, %d %B %Y, %H:%M WIB")
     elif 'detik' in info:
         return (saat_ini - timedelta(seconds=int(info.split('-')[1].strip().split()[0]))).strftime("%A, %d %B %Y, %H:%M WIB")
     else:
@@ -62,7 +62,6 @@ def save_to_json(new_data):
 
     with open('berita.json', 'w') as json_file:
         json.dump(sorted_data, json_file, indent=4)
-
 
 
 if __name__ == "__main__":
